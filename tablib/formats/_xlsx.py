@@ -119,7 +119,7 @@ def dset_sheet(dataset, ws, freeze_panes=True):
         row_number = i + 1
         for j, col in enumerate(row):
             col_idx = get_column_letter(j + 1)
-            cell = ws.cell('%s%s' % (col_idx, row_number))
+            cell = ws['%s%s' % (col_idx, row_number)]
 
             # bold headers
             if (row_number == 1) and dataset.headers:
@@ -129,7 +129,7 @@ def dset_sheet(dataset, ws, freeze_panes=True):
                 if freeze_panes:
                     #  Export Freeze only after first Line
                     ws.freeze_panes = 'A2'
-                    
+
             # bold separators
             elif len(row) < dataset.width:
                 cell.value = unicode('%s' % col, errors='ignore')
@@ -145,5 +145,3 @@ def dset_sheet(dataset, ws, freeze_panes=True):
                         cell.value = unicode('%s' % col, errors='ignore')
                 except TypeError:
                     cell.value = unicode(col)
-
-
